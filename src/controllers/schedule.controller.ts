@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { IScheduleRequest } from "../interfaces/schedules";
+import { ISchedule, IScheduleRequest } from "../interfaces/schedules";
 import { createScheduleService, listScheduleService } from "../services/schedule.service";
 
 
 const createSchedulesController = async (req: Request, res: Response) => {
 
-      const { propertyId, date, hour, userId }: IScheduleRequest = req.body;
+      const { propertyId, date, hour, userId }: ISchedule = req.body;
   
       const schedule = await createScheduleService({
         userId,
@@ -14,7 +14,7 @@ const createSchedulesController = async (req: Request, res: Response) => {
         hour,
       });
   
-      return res.status(201).send(schedule);
+      return res.status(201).send({message: schedule});
   }
 
 

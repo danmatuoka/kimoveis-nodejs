@@ -8,7 +8,7 @@ const ensureAuthMiddleware = async(req: Request, res: Response, next: NextFuncti
 
     if(!token){
         return res.status(401).json({
-            message: 'Invalid token'
+            message: 'Missing token'
         })
     }
 

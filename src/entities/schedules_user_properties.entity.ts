@@ -9,13 +9,10 @@ class Schedule_user_propertie {
     id: string
 
     @Column({type: "date"})
-    date: string
+    date: Date
 
     @Column({type: "time"})
-    hour: string
-
-    @Column()
-    size: number
+    hour: Date
 
     @ManyToOne(() => Property) @JoinColumn()
     properties: Property;
