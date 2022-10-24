@@ -38,18 +38,17 @@ const listCategoryService = async(): Promise<Category[]> => {
 const listCategoryByPropService = async(id: string) => {
    
     const userRepository = AppDataSource.getRepository(Category)
-    const properties = await userRepository.find()
+    const properties = await userRepository.findOne({where: {id: id}, relations: { properties: true }})
 
-    console.log(properties)
+    // const findProp = properties.find((elem) => elem.id === id)
+    // console.log(findProp)
 
-    const findProp = properties.find((elem) => elem.id === id)
-
-    if(!findProp){
+    if(!properties){
         throw new AppError('Invalid ID', 404)
     }
-    console.log(findProp.properties)
+    
 
-    return findProp.properties
+    return properties
 }
 
 export { createCategoryService, listCategoryService, listCategoryByPropService }
